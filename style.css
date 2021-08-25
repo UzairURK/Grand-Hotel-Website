@@ -1,0 +1,963 @@
+html{
+  font-size: 62.5%;
+  /*by default rem = 16px. we set rem = 10px, so , 10/16% = 0.625 * 100 = 
+  62.5% */
+  box-sizing: border-box;
+}
+
+body {
+  /*Get rid of default margin & padding*/
+
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", san-serif;
+}
+
+/* end of common style */
+
+/* navbar */
+/* sidebar */
+.sidebar {
+  width: 8rem;
+  height: 100%;
+  background-color: #ccc;
+  position: fixed;
+
+  /*alignment of items*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /*vertically*/
+
+  align-items: center; /*horizontally*/
+  z-index: 10; /*due to this, sidebar appears high than hidden navigation as set for clickevent*/
+
+
+
+}
+
+.menu-icon {
+  margin-top: 3rem;
+  cursor: pointer;
+  
+
+}
+
+.line {
+  width: 2.5rem;
+  height: .2rem;
+  background-color: #222;
+  margin-bottom: .6rem;
+}
+
+.line-1, .line-3{
+  width: 1.8rem;
+  transition-property: all; /*for 'width' and 'rotate' connected to cliclevent*/
+  transition-duration: .4s;
+}
+
+.menu-icon:hover .line{
+  width:2.5rem;
+}
+
+.social-media-icon {
+  list-style: none;
+  height: 25rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items:center;
+
+}
+
+.social-link {
+  font-size: 2rem;
+  color: #777;
+  transition: color .3s;
+
+}
+
+.social-link:hover {
+  color: #deaa86;
+}
+
+.year {
+  font-size: 1.5rem;
+  color:#555;
+  margin-bottom: 1rem;
+}
+
+
+/* end of sidebar */
+
+  /* navigation */
+
+.navigation {
+  /* margin-left: 8rem; */
+  left: -32rem; /*for clickevent to hide navigatioin behind sidebar*/
+  position: fixed;
+  width: 40rem;
+  height: 100%;
+  background: linear-gradient(to top,rgba(34, 32, 41, 1), rgba(34, 32, 41, .8)) ,url("Image/navigation1.jpg") center no-repeat;
+  background-size: cover;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  transition: left .8s cubic-bezier(1, 0, 0, 1); /*connected to "click event"*/
+  
+
+}
+
+
+
+.navigation-heading {
+  font-family: 'josefin Sans', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  letter-spacing: .2rem;
+  color: #deaa86;
+  text-align: center;
+}
+
+
+
+.navigation-search-input {
+  width: 30rem;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, .3);
+  font-family: 'josefin Sans', sans-serif;
+  font-size: 1.6rem;
+  color: #deaa86;
+  letter-spacing: .1rem;
+  outline: none;
+  border: .1rem solid #222;
+  border-radius: 5rem; 
+  transition: background-color .3s;
+}
+
+/* transition property for 'focus' */
+
+.navigation-search-input:focus {
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.navigation-search { /*for navigation-serach-btn as parent element*/
+  position: relative; 
+}
+
+.navigation-search-btn {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #deaa86;
+  font-size: 1.7rem;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;  /*top and right places btn in 'search'*/
+}
+
+.navigation-search-btn:focus {
+  outline: none;
+}
+
+.navigation-list {
+
+  list-style: none;
+
+  /*==Flexbox==*/
+  padding: 0;
+  height: 28rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /*==end of Flexbox=*/
+}
+
+/*navigation-item*/
+.navigation-link {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .5s;
+}
+
+/*creating lines when 'hover'*/
+
+.navigation-item { /*parent of navigation-link*/
+  position: relative;
+
+
+}
+
+.navigation-link::before {
+  content: "";
+  width: 0rem;
+  height: .1rem;
+  background-color: #deaa86;
+  position: absolute;
+  top: 1rem;
+  left: -4rem;
+  transition-property: width;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(1, 0, 0, 1);
+}
+
+.navigation-link::after {
+  content: "";
+  width: 0rem;
+  height: .1rem;
+  background-color: #deaa86;
+  position: absolute;
+  top: 1rem;
+  right: -4rem;
+  transition-property: width;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(1, 0, 0, 1);
+}
+
+.navigation-link:hover {
+  color: #deaa86;
+}
+
+.navigation-link:hover::before, .navigation-link:hover::after {
+  width: 3rem;
+}
+/*end of navigation-item*/
+
+.copyright {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* .checkbox { /*for hiding checkbox
+  padding: 0;
+  position: absolute;
+  top: 1rem;
+} */
+
+
+/*clickevent*/
+
+.checkbox:checked ~ .navigation{  /*when chceckbox is checked then it`s child elements perform according to given below properties, so 'General Sicling combinator is choosed' */
+ left: 8rem;
+
+}
+/*making of X*/
+.checkbox:checked ~ .sidebar .line-1 {
+  transform: rotate(-405deg) translate(-5px, 6px);
+  background-color: rgba(255, 0, 0, .5);
+  width: 2.5rem;
+}
+
+.checkbox:checked ~ .sidebar .line-2 {
+  opacity: 0;
+}
+
+.checkbox:checked ~ .sidebar .line-3 {
+  transform: rotate(405deg) translate(-5px, -6px);
+  background-color: rgba(255, 0, 0, .5);
+  width: 2.5rem;
+}
+
+/*making of X*/
+/*end of clickevent*/
+
+  /* end of navigation */
+
+   /* end of navbar */
+
+   /*header*/
+.header {
+  margin-left: 8rem;
+  height: 100vh;
+  background: linear-gradient(to top, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)),url("Image/image-galleri-7.jpeg") center no-repeat;
+  background-size: cover;
+}
+
+.brand {
+  display: flex;
+  
+  cursor: pointer;
+  
+}
+
+.hotel-heading {
+  font-family: 'josefin Sans', sans-serif;
+  font-size: 2.7rem;
+  font-weight: 400;
+  color: #deaa86;
+  letter-spacing: .2rem;
+  
+}
+
+.banner {
+  color: #ddd;
+  height: 65rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /*center horizontally*/
+  justify-content: center; /*center verically*/
+}
+.banner-heading {
+  font-family: 'josefin Sans', sans-serif;
+  font-size: 7rem;
+  font-weight: 400;
+  margin-bottom: 0;
+  animation-name: anim;
+  animation-duration: 2s;
+  
+}
+
+.banner-paragraph {
+  font-size: 3.5rem;
+  font-weight: 300;
+  animation-name: anim;
+  animation-duration: 1.5s;
+  animation-delay: .5s;
+  /*actually 'opacity: 0 ' has no any effect on paragraph, so to git rid of it we have to define 'animation-fill-mode: backwards'*/
+
+  animation-fill-mode: backwards;
+}
+.banner-button {
+  width: 21rem;
+  padding: 1.2rem 2rem;
+  font-size: 2rem;
+  color: #333;
+  letter-spacing: .1rem;
+  border: none;
+  border-radius: 10rem;
+  outline: none;
+  background: linear-gradient(to right, gold, goldenrod);
+  cursor: pointer;
+
+  animation-name: anim;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  /*actually 'opacity: 0 ' has no any effect on button, so to git rid of it we have to define 'animation-fill-mode: backwards'*/
+
+  animation-fill-mode: backwards;
+
+}
+
+.banner-button:hover {
+  background: linear-gradient(to left, gold, goldenrod);
+}
+
+.banner-button:active {
+  transform: translateY(.2rem);
+  box-shadow: .5rem .5rem 5rem gray;
+}
+
+@keyframes anim{
+ 0%{
+   opacity: 0;
+ }
+
+ 100% {
+   opacity: 1;
+ }
+}
+   /*end of header*/
+
+   /*About Us*/
+.about-us {
+  margin-left: 8rem;
+  display: flex;
+  background-color: #ddd;
+  /* flex-wrap: wrap; */
+}
+
+.about-us-content {
+
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10rem;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+.about-us-heading {
+  font-family: 'josefin Sans', sans serif;
+  font-size: 4rem;
+  color: #555;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+/* .small-underline {
+  width: 10rem;
+  height: .1rem;
+  background-color: #deaa86;
+  margin: 0 auto 1rem auto;
+
+}
+
+.big-underline {
+  width: 20rem;
+  height: .2rem;
+  background-color: #deaa86;
+  NB: place below
+} */
+
+.sub-heading {
+  font-size: 3.5rem;
+  font-weight: 300;
+  color:#deaa86;
+  letter-spacing: .2rem;
+
+}
+
+.about-us-paragraph {
+  font-size: 1.6rem;
+  font-style: italic;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.about-us-btn {
+  width: 15rem;
+  padding: .7rem .5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #deaa86;
+  background-color:transparent;
+  border: .1rem solid #deaa86;
+  outline: none;
+  cursor: pointer;
+
+}
+
+.btn-arrow {
+  margin-left: .5rem;
+  transition: margin-left .4s;
+}
+
+.about-us-btn:hover .btn-arrow {
+  margin-left: 1.5rem;
+
+}
+.about-us-images {
+  flex-grow: 0.5;
+  flex-shrink: 1;
+  position: relative;
+  flex-wrap: wrap;
+  max-width: 32rem;
+  
+  
+}
+
+.image {
+  max-width: 30rem;
+  width: 100%;
+  
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  box-shadow: 0 3rem 10rem rgba(0, 0, 0, .7);
+  border-radius: .4rem;
+  border: .2rem solid #b85d1c;
+}
+.image-1 {
+  transform: translate(-20,-90);
+  outline: none;
+  }
+
+.image-2 {
+  transform: translate(-90%, -90%);
+  outline: none;
+
+  
+}
+
+.image-3 {
+  transform: translate(-50%, -50%);
+  outline: none;
+  
+}
+
+.image-4 {
+  transform: translate(53%, 80%);
+  outline: none;
+}
+   /*End of About Us*/
+  /* common header */
+  .common-header {
+    padding: 5rem;
+    text-align: center;
+    color: #deaa86;
+  }
+  .common-heading {
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: .2rem;
+  }
+
+  .small-underline {
+    width: 10rem;
+    height: .1rem;
+    background-color: #deaa86;
+    margin: 0 auto 1rem auto;
+  
+  }
+  
+  .big-underline {
+    width: 20rem;
+    height: .2rem;
+    background-color: #deaa86;
+    margin: auto;
+  }
+  /* end of common header */
+   /* rooms */
+   .rooms {
+    margin-left: 8rem;
+  }
+
+  .rooms-card-wrapper {
+    display: flex;
+    
+     justify-content: center; 
+     align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap; /*for responsivness*/
+
+  }
+  .room-card {
+    width: 60rem;
+    margin: 5rem;
+    height: 100%;
+    background-color:#15141b;
+    box-shadow:0 3rem 8rem rgba(0, 0, 0, .5);
+  }
+
+  .room-img {
+    width: 100%; /*width inheritaed from it`s parent i.e becomes 60rem, from ".room-card"*/
+    /* box-shadow: 0 3rem 6rem rgba(0, 0, 0, .3); */
+  }
+
+  .room-card-content {
+    color: #ddd;
+    padding: 2rem;
+  }
+  .room-card-heading {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 300;
+  }
+  .room-card-paragraph {
+    font-size: 1.5rem;
+    color: #777;
+  }
+  .room-price {
+    font-size: 5rem;
+    font-weight: 300;
+    text-align: right;
+    margin: 0;
+  }
+
+  .room-card-btn {
+    width: 15rem;
+    padding: 1.5rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #deaa86;
+    background-color:transparent;
+    border: .1rem solid #deaa86;
+    border-radius: 10rem;
+    outline: none;
+    cursor: pointer;
+  }
+  .rooms-btn-wrapper {
+    text-align: center;
+  }
+  .rooms-btn {
+    width: 20rem;
+    padding: 1.5rem 1rem;
+    margin: 4rem 0;
+    background-color: transparent;
+    text-transform: uppercase;
+    color: #deaa86;
+    border: .2rem solid #b85d1c;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 1.5rem 6rem rgba(0, 0, 0, .3);
+    transition: all .5s;
+  }
+  .rooms-btn:hover {
+    color: #ddd;
+    background-color: #deaa86;
+  }
+   /* end of rooms */
+
+   /*customers*/
+.customers {
+  margin-left: 8rem;
+  
+  padding-bottom: 7rem;
+  background-color: #15141b;
+}
+.customers-paragraph {
+  font-size: 1.8rem;
+  color: #ddd;
+  width: 40%;
+  text-align: center;
+  margin: 2rem auto 8rem auto;
+}
+
+.customers-card-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+.customer-card {
+  background-color: #eee;
+  width: 60rem;
+  display: flex;
+  
+}
+.customer-image-wrapper {
+  margin: 0 0;
+}
+.customer-image {
+  width: 20rem;
+  margin-top: -.3rem;
+  margin-left: -1rem;
+  height: 100%;
+}
+.customer-info {
+padding: 0 2rem;
+}
+.customer-fullname {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+.customer-paragraph-1 {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #deaa86;
+}
+.customer-paragraph-2 {
+  font-size: 1.3rem;
+  font-style: italic;
+  width: 50%;
+}
+   /*end of customers*/
+   /*footer*/
+   .footer {
+    margin-left: 8rem;
+   }
+   .main-part {
+     display: flex;
+     justify-content: space-between;
+     background-color: #1c1c1c;
+     padding: 4rem;
+   }
+   .footer-heading {
+     font-size: 2.5rem;
+     font-weight: 300;
+     color: goldenrod;
+     margin: 1rem 0 3rem 0;
+   }
+   .footer-list {
+     list-style: none;
+     padding: 0;
+   }
+   .footer-list-item {
+     margin-bottom: 2rem;
+   }
+   .footer-list-link {
+     font-size: 1.4rem;
+     text-decoration: none;
+     color: #bbb;
+   }
+   .contact p {
+     font-size: 1.5rem;
+     color: #bbb;
+     margin-bottom: 4rem;
+   }
+   .footer-form {
+     display: flex;
+   }
+   .form-input {
+     width: 25rem;
+     padding: 1rem;
+     font-family: 'josefin Sans', sans-serif;
+     font-size: 1.8rem;
+     color: #444;
+     outline: none;
+   }
+   .form-label {
+     color: #bbb;
+     font-size: 2rem;
+     margin: 0 0.5rem 0 0;
+   }
+   .footer-btn {
+     padding: 1rem;
+     background-color: #b85d1c;
+     color: #ddd;
+     border: none;
+   }
+   .footer-btn:hover{
+     cursor: pointer;
+   }
+   .gallery {
+     max-width: 40rem;
+   }
+   .image-wrapper {
+     width: 13rem;
+     margin: .2rem;
+     overflow: hidden; /*it maintaines the hover width*/
+   }
+   .footer-image {
+     width: 100%;
+     height: 100%;
+     backface-visibility: hidden;
+     transition: all .5s;
+   }
+   .gallery-images {
+     display: flex;
+     flex-wrap: wrap;
+     
+   }
+   .footer-image:hover {
+     transform: scale(1.3);
+     opacity: .8;
+   }
+   .creater-part {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     background-color: #111;
+     padding: 0 4rem;
+   }
+   .copyright-text {
+     font-size: 1.3rem;
+     color: #aaa;
+
+   }
+   .text-right {
+     font-size: 1.4rem;
+     color: #bbb;
+
+   }
+   .text-right i {
+     font-size: 2rem;
+     color: tomato;
+   }
+   .text-right span {
+     color: gold;
+   }
+   /*end of footer*/
+
+
+
+
+   /*=================================Responsive*/
+   /*First of all, choose 'break point' and make website responsive according in which way it is made*/
+   @media(max-width: 1400px){
+     .customers-card-wrapper{
+       display: flex;
+      flex-direction: column;
+       align-items: center;
+     }
+     .customer-card:first-child{
+       margin-bottom: 3rem;
+     }
+     .main-part{
+       flex-direction: column;
+     }
+     .footer-list{
+       display: flex;
+     }
+     .footer-list-item{
+       margin-right: 3rem;
+     }
+   }
+   /*========================================*/
+
+@media(max-width: 1200px){
+  .navigation{
+    width: 25rem;
+  }
+  .navigation-search-input{
+    width: 20rem;
+  }
+  .about-us {
+    flex-direction: column;
+    padding-bottom: 20rem;
+  }
+  .about-us-content{
+    margin-bottom: 13rem;
+    
+  }
+  .image{
+    margin-left: 3rem;
+    width: 20rem;
+  }
+  .room-card{
+    width: 40rem;
+  }
+}
+
+@media(max-width: 900px){
+  .banner{
+    text-align: center;
+  }
+  .banner-heading{
+    font-size: 4.7rem;
+  }
+  .banner-paragraph{
+    font-size: 2.6rem;
+  }
+  .banner-button{
+    width: 16rem;
+    font-size: 1.6rem;
+  }
+}
+  @media(max-width: 750px){
+    .customer-card{
+      flex-direction: column;
+      width: 20rem;
+    }
+    .customer-image{
+      margin-left: 0;
+    }
+    .footer-list {
+      display: block;
+    }
+    .creater-part{
+      flex-direction: column;
+      text-align: center;
+    }
+    .copyright-text{
+      order: 1;
+    }
+  }
+
+   /*===============================================*/
+
+   @media(max-width: 500px){
+     .navigation{
+       width: 28rem;
+     }
+     .navigation-search-input{
+       width: 20rem;
+     }
+     .banner{
+      height: 100%;
+      margin-top: -10;
+    }
+    .banner-heading{
+      font-size: 2rem;
+      
+    }
+    .banner-paragraph{
+      font-size:2rem;
+    }
+    .sub-heading{
+      font-size: 2rem;
+      text-align: center;
+    }
+     .hotel-heading{
+       font-size: 2rem;
+       margin: auto 0;
+     }
+     .about-us{
+       flex-direction: column;
+       padding-bottom: 15rem;
+       
+     }
+     .about-us-heading{
+       font-size: 1.5rem;
+       text-align: center;
+     }
+    
+     .about-us-content{
+      padding: 5rem;
+      margin-top: -5rem;
+
+     }
+     .image {
+       width: 13rem;
+       margin-top: -8rem;
+       margin-left: -2rem;
+      
+     }
+     .image-4{
+       margin-left: -7rem;
+     }
+     .common-heading{
+       font-size: 2rem;
+     }
+     .small-underline{
+       width: 5rem;
+     }
+     .big-underline{
+       width: 12rem;
+     }
+     .room-card{
+       width: 30rem;
+     }
+     .room-card-heading{
+       font-size: 1.5rem;
+     }
+     .room-price{
+       font-size: 2.5rem;
+       margin-bottom: 1.5rem;
+       text-align: left;
+     }
+     .room-card-btn{
+       width: 12rem;
+       padding: 1rem .5rem;
+       font-size: 1rem;
+     }
+     .customers-paragraph{
+       font-size: 1.4rem;
+       width: 80%;
+     }
+     .customer-card{
+       margin: auto;
+     }
+     .main-part{
+       padding: 2rem;
+       
+
+     }
+     .footer-input {
+       width: 12rem;
+     }
+     .footer-list{
+      
+       flex-direction: column;
+       
+     }
+     .footer-heading{
+       font-size: 3rem;
+     }
+     .footer-list-item{
+       font-size: 2.5rem;
+     }
+     .image-wrapper{
+       width: 9rem;
+     }
+     .creater-part{
+       display: flex;
+       flex-direction: column;
+     }
+     
+   }
